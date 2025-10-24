@@ -7,13 +7,13 @@ const approvalSchema = new mongoose.Schema( {
         required: true
     },
     admin_id: {
-        type: mongoose.Schema.Types.ObjectID,
+        type: Number,
         ref: "Admin",
         required: true
     },
     decision: {
         type: String,
-        enum: ["approved", "rejected"],
+        enum: ["approved", "rejected", "pending"],
         default: "pending",
         required: true
     },

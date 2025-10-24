@@ -1,6 +1,10 @@
 mongoose = require("mongoose");
 
 const notesSchema = new mongoose.Schema({
+    note_id: {
+            type: Number,
+            required: true
+        },
     student_id: {
         type: mongoose.Schema.Types.ObjectID,
         ref: "Student",
@@ -28,6 +32,9 @@ const notesSchema = new mongoose.Schema({
         type: String,
         enum: ["pending", "approved", "rejected"],
         default: "pending"
+    },
+    remark: {
+        type: String
     }
 })
 

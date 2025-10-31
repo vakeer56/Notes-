@@ -36,6 +36,6 @@ const notesSchema = new mongoose.Schema({
     remark: {
         type: String
     }
-})
+}, {timestamps: true})
 
 module.exports = mongoose.model("Note", notesSchema);

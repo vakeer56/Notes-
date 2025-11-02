@@ -20,10 +20,13 @@ db.on("error", (err) => {
     console.error("Error connecting to MongoDB:", err);
 });
 
+const studentRoutes = require('./Routes/studentRoutes');
+const adminRoutes = require('./Routes/adminRoutes');
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/uploads', express.static('uplaods')) //to access the files publicly
+app.use('/uploads', express.static('uploads')) //to access the files publicly
 
 app.get("/", (req, res) => {
     res.json({ message: "The server is working fine", status: 200 });

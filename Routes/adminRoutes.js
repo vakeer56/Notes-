@@ -1,37 +1,49 @@
-const express = require('express');
-const bcrypt = require('bcrypt');
-const Admin = require('../model/admin');
+const express = require("express");
+const bcrypt = require("bcrypt");
+const Student = require("../model/student");
 
 const router = express.Router();
 
-// To Register a new Admin 
-
-router.post('/register', async (req, res) => {
+// Register
+router.post("/student/register", async (req, res) => {
     try {
-        const {admin_id, name, email, password} = req.body;
+        const { student_id, name, email, password, department, year } = req.body;
 
-        const existing = await Admin.find({email});
-        if (!existing) res.status(400).json({message: "Email already exists"})
-        
-        const hashed = await bcrypt.hash(password,10);
+        const existing = await Student.findOne({ email });
+        if (existing) return res.status(400).json({ error: "Email already registered" });
 
-        const newAdmin = new Admin({
-            admin_id,
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newStudent = new Student({
+            student_id,
             name,
             email,
-            password: hashed
-        })
+            password: hashedPassword,
+            department,
+            year
+        });
 
-        await newAdmin.save();
+        await newStudent.save();
+        res.status(201).json({ message: "Student registered successfully" });
+    } catch (err) {
+        res.status(500).json({ error: "Internal Server Error" });
     }
-    catch(error) {
-        res.status(500).json({error: "Failed to register"})
+});
+
+// Login
+router.post("/student/login", async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        const student = await Student.findOne({ email });
+        if (!student) return res.status(400).json({ error: "Invalid email or password" });
+
+        const isMatch = await bcrypt.compare(password, student.password);
+        if (!isMatch) return res.status(400).json({ error: "Invalid email or password" });
+
+        res.status(200).json({ message: "Login successful" });
+    } catch (err) {
+        res.status(500).json({ error: "Internal Server Error" });
     }
-})
+});
 
-router.post('/login', async (req, res) => {
-    const {email, password} = req.body;
-
-    const admin = await Admin.findOne({email});
-    if (!admin)
-})
+module.exports = router;

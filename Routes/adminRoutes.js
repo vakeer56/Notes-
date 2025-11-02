@@ -33,5 +33,7 @@ router.post('/login', async (req, res) => {
     const {email, password} = req.body;
 
     const admin = await Admin.findOne({email});
-    if (!admin)
+    if (!admin) {
+        res.status(400).json({})
+    }
 })

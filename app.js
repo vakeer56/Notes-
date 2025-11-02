@@ -3,37 +3,38 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+
+const studentRoutes = require("./Routes/studentRoutes");
+const adminRoutes = require("./Routes/adminRoutes");
+
 const port = 5000;
 
-//establishing connection b/w app and database
-mongoose.connect("mongodb://localhost:27017/notesDB", {
+// DB connection
+mongoose.connect("mongodb://localhost:27017/", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
 
-const db = mongoose.connection;
-
-db.once("open", () => {
-    console.log("Connected to MongoDB successfully");
-});
-db.on("error", (err) => {
-    console.error("Error connecting to MongoDB:", err);
+mongoose.connection.once("open", () => {
+    console.log("Connected to MongoDB");
 });
 
-const studentRoutes = require('./Routes/studentRoutes');
-const adminRoutes = require('./Routes/adminRoutes');
-
+// Middlewares first
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/uploads', express.static('uploads')) //to access the files publicly
+
+// Static files
+app.use('/uploads', express.static('uploads'));
+
+// Routes
+app.use(studentRoutes);
+app.use(adminRoutes);
 
 app.get("/", (req, res) => {
     res.json({ message: "The server is working fine", status: 200 });
 });
 
 app.listen(port, () => {
-    console.log("Server is running on port", port);
+    console.log("Server is running on port", port);
 });
-
-//HELLO!!!!

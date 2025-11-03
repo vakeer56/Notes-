@@ -28,8 +28,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 
 // Routes
-app.use(studentRoutes);
-app.use(adminRoutes);
+app.use("/student",studentRoutes);
+app.use("/admin", adminRoutes);
 
 app.get("/", (req, res) => {
     res.json({ message: "The server is working fine", status: 200 });

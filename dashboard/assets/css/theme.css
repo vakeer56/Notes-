@@ -1,0 +1,72 @@
+/* assets/css/theme.css */
+
+/* Global Theme */
+:root {
+  --primary-color: #0b1f4a;   /* deep blue same as login header */
+  --accent-color: #00bcd4;   /* bright cyan */
+  --text-color: #ffffff;
+  --bg-color: #f4f6fb;
+  --card-bg: #ffffff;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --radius: 12px;
+  --transition: all 0.3s ease;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header */
+.header {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 25px 0;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+}
+
+/* Main Content */
+.content {
+  background-color: var(--bg-color);
+  min-height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Buttons */
+button {
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: var(--radius);
+  background-color: var(--accent-color);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+button:hover {
+  background-color: #0097a7;
+  transform: translateY(-3px);
+}
+
+/* Optional card container style (for future content) */
+.dashboard-card {
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  padding: 20px;
+  width: 80%;
+  max-width: 800px;
+  margin-top: 20px;
+}

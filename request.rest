@@ -3,8 +3,8 @@ Content-Type: application/json
 
 {
     "student_id": "01",
-    "name": "Varun",
-    "email": "varun@gmail.com",
+    "name": "vishnu",
+    "email": "vishnu@gmail.com",
     "password": "password123",
     "department": "Information Technology",
     "year": "1"
@@ -16,6 +16,6 @@ POST http://localhost:5000/student/login
 Content-Type: application/json
 
 {
-    "email": "varun@gmail.com",
+    "email": "vishnu@gmail.com",
     "password": "password123"
 }

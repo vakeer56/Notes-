@@ -1,6 +1,9 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const Admin = require("../model/admin");
+
+require("dotenv").config();
 
 const router = express.Router();
 
@@ -37,7 +40,12 @@ router.post("/login", async (req, res) => {
         const isMatch = await bcrypt.compare(password, admin.password);
         if (!isMatch) return res.status(400).json({ error: "Invalid email or password" });
 
-        res.status(200).json({ message: "Login successful" });
+        const token = jwt.sign( {
+            adminId: admin._id, 
+            email: admin.email
+        }, process.env.JWT_TOKEN, { expiresIn: "1h" });
+        res.status(200).json({ message: "Login successful" , token}
+        );
     } catch (err) {
         res.status(500).json({ error: "Internal Server Error" });
     }

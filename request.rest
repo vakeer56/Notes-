@@ -19,3 +19,16 @@ Content-Type: application/json
     "email": "varun@gmail.com",
     "password": "password123"
 }
+
+###
+
+POST http://localhost:5000/notes/upload
+Content-Type: application/json
+
+{
+  "student_id": "654abc789xyz",
+  "title": "AI Notes - Unit 1",
+  "description": "Introduction to AI Concepts",
+  "year": 3,
+  "file_url": "https://drive.google.com/file/d/1xY2zABC12345/view?usp=sharing"
+}

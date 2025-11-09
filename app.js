@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 
 const studentRoutes = require("./Routes/studentRoutes");
 const adminRoutes = require("./Routes/adminRoutes");
+const notesRoutes = require("./Routes/notesRoutes");
 
 const port = 5000;
 
@@ -30,6 +31,7 @@ app.use('/uploads', express.static('uploads'));
 // Routes
 app.use(studentRoutes);
 app.use(adminRoutes);
+app.use("/notes/uploads", notesRoutes);
 
 app.get("/", (req, res) => {
     res.json({ message: "The server is working fine", status: 200 });

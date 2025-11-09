@@ -5,7 +5,7 @@ const Student = require("../model/student");
 const router = express.Router();
 
 // Register
-router.post("/student/register", async (req, res) => {
+router.post("/register", async (req, res) => {
     try {
         const { student_id, name, email, password, department, year } = req.body;
 
@@ -30,7 +30,7 @@ router.post("/student/register", async (req, res) => {
 });
 
 // Login
-router.post("/student/login", async (req, res) => {
+router.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
 

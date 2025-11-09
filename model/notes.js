@@ -6,7 +6,7 @@ const notesSchema = new mongoose.Schema({
             required: true
         },
     student_id: {
-        type: mongoose.Schema.Types.ObjectID,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Student",
         required: true
     },

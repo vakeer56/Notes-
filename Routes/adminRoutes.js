@@ -1,43 +1,41 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const Student = require("../model/student");
+const Admin = require("../model/admin");
 
 const router = express.Router();
 
 // Register
-router.post("/student/register", async (req, res) => {
+router.post("/register", async (req, res) => {
     try {
-        const { student_id, name, email, password, department, year } = req.body;
+        const { admin_id, name, email, password } = req.body;
 
-        const existing = await Student.findOne({ email });
+        const existing = await Admin.findOne({ email });
         if (existing) return res.status(400).json({ error: "Email already registered" });
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newStudent = new Student({
-            student_id,
+        const newAdmin = new Admin({
+            admin_id,
             name,
             email,
-            password: hashedPassword,
-            department,
-            year
+            password: hashedPassword
         });
 
-        await newStudent.save();
-        res.status(201).json({ message: "Student registered successfully" });
+        await newAdmin.save();
+        res.status(201).json({ message: "Admin registered successfully" });
     } catch (err) {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
 
 // Login
-router.post("/student/login", async (req, res) => {
+router.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        const student = await Student.findOne({ email });
-        if (!student) return res.status(400).json({ error: "Invalid email or password" });
+        const admin = await Admin.findOne({ email });
+        if (!admin) return res.status(400).json({ error: "Invalid email or password" });
 
-        const isMatch = await bcrypt.compare(password, student.password);
+        const isMatch = await bcrypt.compare(password, admin.password);
         if (!isMatch) return res.status(400).json({ error: "Invalid email or password" });
 
         res.status(200).json({ message: "Login successful" });

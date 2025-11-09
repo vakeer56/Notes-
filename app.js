@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 
 const studentRoutes = require("./Routes/studentRoutes");
 const adminRoutes = require("./Routes/adminRoutes");
+const notesRoutes = require("./Routes/notesRoutes");
 
 const port = 5000;
 
@@ -28,6 +29,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 
 // Routes
+app.use(studentRoutes);
+app.use(adminRoutes);
+app.use(notesRoutes);
 app.use("/student",studentRoutes);
 app.use("/admin", adminRoutes);
 
@@ -37,4 +41,8 @@ app.get("/", (req, res) => {
 
 app.listen(port, () => {
     console.log("Server is running on port", port);
+<<<<<<< HEAD
 })
+=======
+});
+>>>>>>> d89a1028efd658baf3f88bc258efb4432e522b59

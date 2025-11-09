@@ -19,3 +19,20 @@ Content-Type: application/json
     "email": "vishnu@gmail.com",
     "password": "password123"
 }
+
+###
+
+POST http://localhost:5000/notes/upload
+Content-Type: application/json
+
+  {
+    "note_id": 1,
+    "student_id": "672f4f9a5c1234567890abcd",
+    "title": "Unit 1 - Vectors and 3D Geometry",
+    "description": "Comprehensive handwritten notes covering vector algebra and 3D geometry concepts with solved problems.",
+    "department": "CSE",
+    "year": 1,
+    "file_url": "https://dummyurl.com/notes/vectors-geometry.pdf",
+    "status": "approved",
+    "remark": "Well structured, useful for revisions"
+  }

@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 
 const studentRoutes = require("./Routes/studentRoutes");
 const adminRoutes = require("./Routes/adminRoutes");
+const notesRoutes = require("./Routes/notesRoutes");
 
 const port = 5000;
 
@@ -28,6 +29,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 
 // Routes
+app.use(studentRoutes);
+app.use(adminRoutes);
+app.use(notesRoutes);
 app.use("/student",studentRoutes);
 app.use("/admin", adminRoutes);
 

@@ -25,7 +25,7 @@ Content-Type: application/json
 POST http://localhost:5000/notes/upload
 Content-Type: application/json
 
-  {
+{
     "note_id": 1,
     "student_id": "672f4f9a5c1234567890abcd",
     "title": "Unit 1 - Vectors and 3D Geometry",
@@ -35,4 +35,4 @@ Content-Type: application/json
     "file_url": "https://dummyurl.com/notes/vectors-geometry.pdf",
     "status": "approved",
     "remark": "Well structured, useful for revisions"
-  }
+}

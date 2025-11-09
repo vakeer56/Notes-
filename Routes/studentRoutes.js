@@ -40,7 +40,15 @@ router.post("/login", async (req, res) => {
         const isMatch = await bcrypt.compare(password, student.password);
         if (!isMatch) return res.status(400).json({ error: "Invalid email or password" });
 
-        res.status(200).json({ message: "Login successful" });
+        const token = jwt.sign(
+            {studentId: student._id, email: student.email},
+            process.env.JWT_SECRET,
+            {expiresIn: "1h"}
+        )
+
+        res.status(200).json({ message: "Login successful" },
+            token
+        );
     } catch (err) {
         res.status(500).json({ error: "Internal Server Error" });
     }

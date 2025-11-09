@@ -31,7 +31,7 @@ app.use('/uploads', express.static('uploads'));
 // Routes
 app.use(studentRoutes);
 app.use(adminRoutes);
-app.use("/notes/uploads", notesRoutes);
+app.use(notesRoutes);
 
 app.get("/", (req, res) => {
     res.json({ message: "The server is working fine", status: 200 });

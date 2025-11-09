@@ -25,10 +25,14 @@ Content-Type: application/json
 POST http://localhost:5000/notes/upload
 Content-Type: application/json
 
-{
-  "student_id": "654abc789xyz",
-  "title": "AI Notes - Unit 1",
-  "description": "Introduction to AI Concepts",
-  "year": 3,
-  "file_url": "https://drive.google.com/file/d/1xY2zABC12345/view?usp=sharing"
-}
+  {
+    "note_id": 1,
+    "student_id": "672f4f9a5c1234567890abcd",
+    "title": "Unit 1 - Vectors and 3D Geometry",
+    "description": "Comprehensive handwritten notes covering vector algebra and 3D geometry concepts with solved problems.",
+    "department": "CSE",
+    "year": 1,
+    "file_url": "https://dummyurl.com/notes/vectors-geometry.pdf",
+    "status": "approved",
+    "remark": "Well structured, useful for revisions"
+  }

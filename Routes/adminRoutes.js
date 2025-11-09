@@ -7,14 +7,13 @@ const router = express.Router();
 // Register
 router.post("/register", async (req, res) => {
     try {
-        const { admin_id, name, email, password } = req.body;
+        const { name, email, password } = req.body;
 
         const existing = await Admin.findOne({ email });
         if (existing) return res.status(400).json({ error: "Email already registered" });
 
         const hashedPassword = await bcrypt.hash(password, 10);
         const newAdmin = new Admin({
-            admin_id,
             name,
             email,
             password: hashedPassword

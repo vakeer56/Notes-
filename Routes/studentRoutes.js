@@ -1,20 +1,22 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const Student = require("../model/student");
+
+require("dotenv").config();
 
 const router = express.Router();
 
 // Register
 router.post("/register", async (req, res) => {
     try {
-        const { student_id, name, email, password, department, year } = req.body;
+        const { name, email, password, department, year } = req.body;
 
         const existing = await Student.findOne({ email });
         if (existing) return res.status(400).json({ error: "Email already registered" });
 
         const hashedPassword = await bcrypt.hash(password, 10);
         const newStudent = new Student({
-            student_id,
             name,
             email,
             password: hashedPassword,
@@ -41,14 +43,15 @@ router.post("/login", async (req, res) => {
         if (!isMatch) return res.status(400).json({ error: "Invalid email or password" });
 
         const token = jwt.sign(
-            {studentId: student._id, email: student.email},
-            process.env.JWT_SECRET,
-            {expiresIn: "1h"}
-        )
-
-        res.status(200).json({ message: "Login successful" },
-            token
+            { studentId: student._id, email: student.email },
+            process.env.JWT_TOKEN,
+            { expiresIn: "1h" }
         );
+
+        res.status(200).json({ 
+            message: "Login successful",
+            token
+        });
     } catch (err) {
         res.status(500).json({ error: "Internal Server Error" });
     }

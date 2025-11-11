@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const notesController = require("../controller/notesController");
+const { updateStatus } = require("../Controllers/updateStatusController");
 
 // Update note status (approve/reject)
-router.patch("/updateStatus", notesController.updateStatus);
+router.patch("/updateStatus", updateStatus );
 
 module.exports = router;

@@ -1,3 +1,5 @@
+const Notes = require("../model/Approval")
+
 // UPDATE Notes - Approve or Reject by Admin
 const updateStatus = async (req, res) => {
   try {
@@ -39,3 +41,5 @@ const updateStatus = async (req, res) => {
     });
   }
 };
+
+module.exports = { updateStatus };

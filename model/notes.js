@@ -16,17 +16,20 @@ const notesSchema = new mongoose.Schema({
         trim: true
     },
     description: {
-        type: String
+        type: String,
+        required: true
     },
     department: {
         type: String,
         required: true
     },
     year: {
-        type: Number
+        type: Number,
+        required: true
     },
     file_url: {
-        type: String
+        type: String,
+        required: true
     },
     status: {
         type: String,

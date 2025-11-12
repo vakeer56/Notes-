@@ -18,10 +18,10 @@ const index = async (req, res) => {
   }
 };
 
-// GET Notes of a single student by id
+// GET Notes of a single student
 const show = async (req, res) => {
   try {
-    const studentID = req.params.studentID;
+    const studentID = req.body.studentID;
 
     // Find notes that belong to this student
     const notes = await Notes.find({ student_id: studentID }).populate(
@@ -63,63 +63,4 @@ const store = async (req, res) => {
   }
 };
 
-
-const byDepartment = async (req, res) => {
-  try{
-    const  department  = req.params.department;
-
-    const notes = await Notes.find({department: department});
-    if(notes.length==0){
-      return res.status(404).json({message: "No notes found for this department"});
-    }
-    else{
-      res.status(200).json({
-        success: true,
-        count : notes.length,
-        notes});
-    }
-  } catch (error){
-    res.status(500).json({message: "Error while fetching notes", error});
-  }
-};
-
-
-const bySubject = async (req, res) => {
-  try{
-    const subject = req.params.title;
-
-    const notes = await Notes.find({title: subject});
-    if(notes.length==0){
-      return res.status(404).json({message: "No notes found for this subject"});
-    }
-    else{
-      res.status(200).json({
-        success: true,
-        count : notes.length,
-        notes});
-    }
-  } catch (error){
-    res.status(500).json({message: "Error while fetching notes", error});
-  }
-};
-
-const byYear = async (req, res) => {
-  try{
-    const year = req.params.year;
-
-    const notes = await Notes.find({year: year});
-    if(notes.length==0){
-      return res.status(404).json({message: "No notes found for this year"});
-    }
-    else{
-      res.status(200).json({
-        success: true,
-        count : notes.length,
-        notes});
-    }
-  } catch (error){
-    res.status(500).json({message: "Error while fetching notes", error});
-}
-};
-
-module.exports = {index, store, show, byDepartment, bySubject, byYear};
+module.exports = {index, store, show};

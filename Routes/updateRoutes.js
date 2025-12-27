@@ -3,6 +3,6 @@ const router = express.Router();
 const { updateStatus } = require("../Controllers/updateStatusController");
 
 // Update note status (approve/reject)
-router.patch("/updateStatusController",updateStatusController);
+router.patch("/updateStatus", updateStatus );
 
 module.exports = router;

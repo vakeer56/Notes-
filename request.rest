@@ -1,16 +1,23 @@
-POST http://localhost:5000/notes/upload
+POST http://localhost:5000/student/register
 Content-Type: application/json
 
-{   
-    "note_id": 12,
-    "student_id": "672f4f9a5c7234567890abcd",
-    "title": "Engineering Physics - Quantum Theory",
-    "description": "Fundamentals of quantum mechanics and electron theory of metals.",
-    "department": "ECE",
-    "year": 2,
-    "file_url": "https://dummyurl.com/notes/quantum-theory.pdf",
-    "remark": "Incomplete derivations"
-  }
+{
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "password": "securepassword",
+  "department": "ECE",
+  "year": 2
+}
+
+###
+
+POST http://localhost:5000/student/login
+Content-Type: application/json
+
+{
+  "email": "johndoe@example.com",
+  "password": "securepassword"
+}
 
 ###
 

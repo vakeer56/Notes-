@@ -27,7 +27,7 @@ router.post("/register", async (req, res) => {
         await newStudent.save();
         res.status(201).json({ message: "Student registered successfully" });
     } catch (err) {
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({err});
     }
 });
 
@@ -52,7 +52,7 @@ router.post("/login", async (req, res) => {
             token
         });
     } catch (err) {
-        res.status(500).json({ err});
+        res.status(500).json({err});
     }
 });
 

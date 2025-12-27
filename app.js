@@ -3,14 +3,17 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 
+
+require("dotenv").config();
+
+
 const studentRoutes = require("./Routes/studentRoutes");
 const adminRoutes = require("./Routes/adminRoutes");
 const notesRoutes = require("./Routes/notesRoutes");
+const updateRoutes = require("./Routes/updateRoutes");
 
 const port = 5000;
-
-// DB connection (FIXED)
-mongoose.connect("mongodb://localhost:27017/studentDB", {
+mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -31,6 +34,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/student", studentRoutes);
 app.use("/admin", adminRoutes);
 app.use("/notes", notesRoutes);
+app.use("/notes", updateRoutes)
 
 app.get("/", (req, res) => {
     res.json({ message: "The server is working fine", status: 200 });

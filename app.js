@@ -33,7 +33,7 @@ app.use("/uploads", express.static("uploads"));
 // Routes (FIXED)
 app.use("/student", studentRoutes);
 app.use("/admin", adminRoutes);
-app.use("/notes/update", updateRoutes);
+app.use("/notes", updateRoutes);
 app.use("/notes", notesRoutes);
 
 app.get("/", (req, res) => {

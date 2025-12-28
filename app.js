@@ -33,8 +33,8 @@ app.use("/uploads", express.static("uploads"));
 // Routes (FIXED)
 app.use("/student", studentRoutes);
 app.use("/admin", adminRoutes);
+app.use("/notes/update", updateRoutes);
 app.use("/notes", notesRoutes);
-app.use("/notes", updateRoutes)
 
 app.get("/", (req, res) => {
     res.json({ message: "The server is working fine", status: 200 });

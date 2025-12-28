@@ -1,6 +1,6 @@
 const Notes = require("../model/notes");
 
-// GET the list of Notes
+// GET the list of all Notes
 const index = async (req, res) => {
   try {
     const notes = await Notes.find().populate("student_id", "name");
@@ -43,7 +43,7 @@ const show = async (req, res) => {
   }
 };
 
-//POST Notes
+// POST Notes
 const store = async (req, res) => {
   try {
     const newNote = new Notes(req.body); // Mongoose creates a new document (an object) based on your notesSchema.
@@ -63,7 +63,7 @@ const store = async (req, res) => {
   }
 };
 
-
+// GET notes by department
 const byDepartment = async (req, res) => {
   try{
     const  department  = req.params.department;
@@ -83,7 +83,7 @@ const byDepartment = async (req, res) => {
   }
 };
 
-
+// GET notes by subject
 const bySubject = async (req, res) => {
   try{
     const subject = req.params.title;
@@ -103,6 +103,7 @@ const bySubject = async (req, res) => {
   }
 };
 
+// GET notes by year 
 const byYear = async (req, res) => {
   try{
     const year = req.params.year;
@@ -122,4 +123,27 @@ const byYear = async (req, res) => {
 }
 };
 
-module.exports = {index, store, show, byDepartment, bySubject, byYear};
+// GET pending notes
+const pendingNotes = async (req, res) => {
+  try{
+    const pendingNotes = await Notes.find({status: "pending"}).populate("student_id", "title");
+
+    if(pendingNotes.length === 0){
+      return res.status(404).json({
+        success: false,
+        message: "No pending notes found"});
+    }
+    else{
+      res.status(200).json({
+        success: true,
+        count : pendingNotes.length,
+        pendingNotes});
+    }
+  } catch (error){
+    res.status(500).json({
+      success: false,
+      message: "Error while fetching notes", error});
+  }
+};
+
+module.exports = {index, store, show, byDepartment, bySubject, byYear, pendingNotes};

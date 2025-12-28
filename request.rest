@@ -51,12 +51,28 @@ POST http://localhost:5000/notes/upload
 Content-Type: application/json
 
 {   
-    "note_id": 12,
+    "note_id": 10,
     "student_id": "672f4f9a5c7234567890abcd",
     "title": "Engineering Physics - Quantum Theory",
     "description": "Fundamentals of quantum mechanics and electron theory of metals.",
     "department": "ECE",
     "year": 2,
+    "file_url": "https://dummyurl.com/notes/quantum-theory.pdf",
+    "remark": "Incomplete derivations"
+  }
+
+###
+
+POST http://localhost:5000/notes/upload
+Content-Type: application/json
+
+{   
+    "note_id": 5,
+    "student_id": "672f4f9a5c7234567890abcd",
+    "title": "Engineering Maths - Quantum Theory",
+    "description": "Fundamentals of quantum mechanics and electron theory of metals.",
+    "department": "IT",
+    "year": 3,
     "file_url": "https://dummyurl.com/notes/quantum-theory.pdf",
     "remark": "Incomplete derivations"
   }
@@ -71,3 +87,7 @@ Content-Type: application/json
     "status": "approved"
 }
 
+###
+
+GET http://localhost:5000/notes/pending
+Content-Type: application/json

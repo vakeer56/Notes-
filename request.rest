@@ -15,7 +15,7 @@ POST http://localhost:5000/student/login
 Content-Type: application/json
 
 {
-  "email": "johndoe@example.com",
+  "email": "johndoe@example.cim",
   "password": "securepassword"
 }
 

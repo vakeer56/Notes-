@@ -7,7 +7,7 @@ const approvalSchema = new mongoose.Schema( {
         required: true
     },
     admin_id: {
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Admin",
         required: true
     },

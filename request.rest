@@ -67,7 +67,7 @@ PATCH http://localhost:5000/notes/updateStatus
 Content-Type: application/json
 
 {
-    "note_id": 12,
+    "note_id": 3,
     "status": "approved"
 }
 

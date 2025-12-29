@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const approvalSchema = new mongoose.Schema( {
     note_id: {
-        type: mongoose.Schema.Types.ObjectID,
+        type: Number,
         ref: "Note",
         required: true
     },

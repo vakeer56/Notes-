@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import NotesList from "../components/NoteList";
+import SearchBox from "../components/searchBox";
 
 
 function Dashboard() {
@@ -29,10 +30,7 @@ function Dashboard() {
         <div className="home">
             
             <div className="hero">
-                <div className="search">
-                    <input type="text" className="search-bar" placeholder="Search notes here" />
-                    <button>search</button> {/* Search button */}
-                </div>
+                    <SearchBox setNotes={setNotes} />
                 <div className="display">
                     {loading ? (<p>
                         Loading Notes...

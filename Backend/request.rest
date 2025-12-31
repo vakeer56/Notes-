@@ -2,7 +2,7 @@ POST http://localhost:5000/student/register
 Content-Type: application/json
 
 {
-  "name": "John Doe",
+  "name": "JD",
   "email": "johndoe@example.com",
   "password": "securepassword",
   "department": "ECE",
@@ -51,7 +51,7 @@ POST http://localhost:5000/notes/upload
 Content-Type: application/json
 
 {   
-    "note_id": 12,
+    "note_id": 10,
     "student_id": "672f4f9a5c7234567890abcd",
     "title": "Engineering Physics - Quantum Theory",
     "description": "Fundamentals of quantum mechanics and electron theory of metals.",
@@ -63,11 +63,33 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:5000/notes/upload
+Content-Type: application/json
+
+{   
+    "note_id": 5,
+    "student_id": "672f4f9a5c7234567890abcd",
+    "title": "Engineering Maths - Quantum Theory",
+    "description": "Fundamentals of quantum mechanics and electron theory of metals.",
+    "department": "IT",
+    "year": 3,
+    "file_url": "https://dummyurl.com/notes/quantum-theory.pdf",
+    "remark": "Incomplete derivations"
+  }
+
+###
+
 PATCH http://localhost:5000/notes/updateStatus
 Content-Type: application/json
 
 {
-    "note_id": 3,
+    "note_id": 1,
     "status": "approved"
 }
 
+###
+
+GET http://localhost:5000/notes/pending
+Content-Type: application/json
+
+//Comment from PR

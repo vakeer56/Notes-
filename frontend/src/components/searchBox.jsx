@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./searchBox.css";
 
 function SearchBox({ setNotes }) {
   const [searchText, setSearchText] = useState("");

@@ -1,4 +1,4 @@
-
+import "./NoteCard.css"
 
 function NoteCard({ note }){
     return(
@@ -7,7 +7,7 @@ function NoteCard({ note }){
             <h3 className="note-title">{note.title}</h3>
 
             <p className="note-desc">
-                {note.description}
+                Description: {note.description}
             </p>
 
             <div className="note-meta">

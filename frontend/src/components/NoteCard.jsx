@@ -1,4 +1,4 @@
-
+import './NoteCard.css'
 
 function NoteCard({ note }){
     return(

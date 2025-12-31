@@ -5,107 +5,16 @@
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
   background-color: whitesmoke;
 }
 
-/* ---------- HEADER ---------- */
+
 h1 {
-  font-size: 1.5rem;
   text-align: center;
-  margin: 20px;
+  margin: 20px 0;
+  color: #333;
 }
 
-/* ---------- MAIN LAYOUT ---------- */
-.home {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
 
-/* ---------- CATEGORY SECTION ---------- */
-.category {
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.category-heading {
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-}
-
-.category-list {
-  list-style: none;
-  width: 100%;
-}
-
-.category-item {
-  background-color: white;
-  padding: 12px 15px;
-  margin: 8px auto;
-  border-radius: 6px;
-  width: 90%;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.category-item:hover {
-  background-color: #f0f0f0;
-  cursor: pointer;
-}
-
-/* ---------- HERO SECTION ---------- */
-.hero {
-  width: 80%;
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* ---------- SEARCH ---------- */
-.search {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.search-bar {
-  padding: 10px 15px;
-  width: 80%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.search-bar:focus {
-  outline: none;
-  border-color: #007BFF;
-}
-
-button {
-  padding: 5px 20px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-/* ---------- DISPLAY AREA ---------- */
-.display {
-  min-height: 200px;
-  border: 1px solid #aaa;
-  border-radius: 5px;
-  padding: 20px;
-  color: #555;
-}

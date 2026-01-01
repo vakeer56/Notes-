@@ -43,11 +43,12 @@ router.post("/login", async (req, res) => {
         const token = jwt.sign( {
             adminId: admin._id, 
             email: admin.email
-        }, process.env.JWT_TOKEN, { expiresIn: "1h" });
+        }, process.env.JWT_SECRET, { expiresIn: "1h" });
         res.status(200).json({ message: "Login successful" , token}
         );
     } catch (err) {
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({err});
+        console.log(err);
     }
 });
 

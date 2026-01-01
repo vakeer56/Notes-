@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
 import Dashboard from './pages/dashboard'
 import Login from './pages/login'
+import AdminLogin from './pages/AdminLogin'
 import ProtectedRoute from './Routes/ProtectedRoute'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
                                              <Dashboard />
                                           </ProtectedRoute>} />
         <Route path='/login' element={<Login />}/>
+        <Route path='/adminLogin' element={<AdminLogin />} />
       </Routes>
     </BrowserRouter>
   )

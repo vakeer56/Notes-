@@ -92,4 +92,25 @@ Content-Type: application/json
 GET http://localhost:5000/notes/pending
 Content-Type: application/json
 
-//Comment from PR
+###
+
+POST http://localhost:5000/admin/register
+Content-Type: application/json
+
+{
+  "name": "Varun",
+  "email": "varunAdmin@example.com",
+  "password": "securepassword",
+  "department": "IT",
+  "year": 1
+}
+
+### 
+
+POST http://localhost:5000/admin/login
+Content-Type: application/json
+
+{
+  "email": "varunAdmin@example.com",
+  "password": "securepassword"
+}

@@ -1,10 +1,15 @@
 import axios from "axios";
 
-const loginUser = (credentials) => {
+export const loginUser = (credentials) => {
   return axios.post(
     "http://localhost:5000/student/login",
     credentials
   );
 };
 
-export default loginUser;
+export const loginAdmin = (credentials) => {
+  return axios.post(
+    "http://localhost:5000/admin/login",
+    credentials
+  );
+};

@@ -1,9 +1,9 @@
 import {useState} from 'react'
-import {loginUser} from '../services/authApi.js'
+import {loginAdmin} from '../services/authApi.js'
 import { useNavigate, Link } from 'react-router-dom'
 
 
-function Login() {
+function AdminLogin() {
 
 
 const [email, setEmail] = useState("")
@@ -17,10 +17,10 @@ const handleSubmit = async (e) => {
 
     try {
 
-        const response = await loginUser({email, password})
+        const response = await loginAdmin({email, password})
 
         localStorage.setItem("token", response.data.token)
-        navigate('/dashboard')
+        navigate('/')
     }catch (error) {
         if (error.response?.data?.error) {
             setErrMsg(error.response.data.error)
@@ -33,7 +33,9 @@ const handleSubmit = async (e) => {
 
 return (
     <>
-    <h1>Student Login</h1>
+
+    <h1>Admin Login</h1>
+
     <form onSubmit={handleSubmit}>
         <label>Email: </label>
         <input 
@@ -50,11 +52,12 @@ return (
     </form>
 
     <div className="change">
-        <Link to="/adminLogin"><button>Admin Login</button></Link>
+        <Link to="/login"><button>Student Login</button></Link>
     </div>
+
     </>
 
 );
 }
 
-export default Login
+export default AdminLogin

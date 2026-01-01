@@ -1,58 +1,75 @@
 import { useEffect, useState } from "react";
-import NoteCard from "./NoteCard"; 
+import NoteCard from "../components/NoteCard";
+
 function AdminPage() {
-const [pendingNotes, setPendingNotes] = useState([]);
-const [approvedNotes, setApprovedNotes] = useState([]);
-const [rejectedNotes, setRejectedNotes] = useState([]);
-const [error, setError] = useState("");
-useEffect(() => {
-fetch("http://localhost:5000/notes/pending")
-.then((res) => res.json())
-.then((data) => {
-if (data.success) {
-    setPendingNotes(data.pendingNotes);
+  const [pendingNotes, setPendingNotes] = useState([]);
+  const [approvedNotes, setApprovedNotes] = useState([]);
+  const [rejectedNotes, setRejectedNotes] = useState([]);
+  const [error, setError] = useState("");
+
+  const fetchNotes = async (url, setter, errorMsg) => {
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+
+      if (data.success) {
+        setter(data.notes);
+      }
+    } catch {
+      setError(errorMsg);
     }
- })
-.catch(() => {
-setError("Failed to fetch pending notes");
-});
+  };
+
+  useEffect(() => {
+    fetchNotes(
+      "http://localhost:5000/notes/pending",
+      setPendingNotes,
+      "Failed to fetch pending notes"
+    );
+
+    fetchNotes(
+      "http://localhost:5000/notes/approved",
+      setApprovedNotes,
+      "Failed to fetch approved notes"
+    );
+
+    fetchNotes(
+      "http://localhost:5000/notes/rejected",
+      setRejectedNotes,
+      "Failed to fetch rejected notes"
+    );
   }, []);
 
   return (
     <div>
-   
-    <header> <h1>Admin Page</h1></header> 
- {error && <p>{error}</p>}
+      <h1>Admin Page</h1>
 
-      <h1>Pending Notes</h1>
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {pendingNotes.length === 0 ? (
-        <p>No pending notes</p>
-      ) : (
-        pendingNotes.map((note) => (
-          <NoteCard key={note._id} note={note} />
-        ))
-      )}
-    <hr />
-      <h1>Approved Notes</h1>
-    {approvedNotes.length === 0 ? (
-        <p>No approved notes</p>
-      ) : (
-        approvedNotes.map((note) => (
-          <NoteCard key={note._id} note={note} />
-        ))
-      )}
+      <h2>Pending Notes</h2>
+      {pendingNotes.length === 0
+        ? <p>No pending notes</p>
+        : pendingNotes.map(note => (
+            <NoteCard key={note._id} note={note} />
+          ))}
 
       <hr />
-      <h1>Rejected Notes</h1>
 
-      {rejectedNotes.length === 0 ? (
-        <p>No rejected notes</p>
-      ) : (
-        rejectedNotes.map((note) => (
-          <NoteCard key={note._id} note={note} />
-        ))
-      )}
+      <h2>Approved Notes</h2>
+      {approvedNotes.length === 0
+        ? <p>No approved notes</p>
+        : approvedNotes.map(note => (
+            <NoteCard key={note._id} note={note} />
+          ))}
+
+      <hr />
+
+      <h2>Rejected Notes</h2>
+      {rejectedNotes.length === 0
+        ? <p>No rejected notes</p>
+        : rejectedNotes.map(note => (
+            <NoteCard key={note._id} note={note} />
+          ))}
     </div>
   );
 }

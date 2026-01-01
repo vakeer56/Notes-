@@ -6,6 +6,7 @@ import AdminLogin from './pages/AdminLogin'
 import Register from './pages/registration'
 import UploadNotes from "./pages/UploadNotes";
 import ProtectedRoute from './Routes/ProtectedRoute'
+import AdminPage from './pages/adminDashboard'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/upload" element={<UploadNotes />} /> 
         <Route path='/login' element={<Login />}/>
         <Route path='/adminLogin' element={<AdminLogin />} />
+        <Route path='/admindash' element={<AdminPage />} />
       </Routes>
     </BrowserRouter>
   )

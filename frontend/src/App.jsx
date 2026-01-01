@@ -3,6 +3,7 @@ import './App.css'
 import Dashboard from './pages/dashboard'
 import Login from './pages/login'
 import AdminLogin from './pages/AdminLogin'
+import Register from './pages/registration'
 import ProtectedRoute from './Routes/ProtectedRoute'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="/dashboard" element={<ProtectedRoute>
                                              <Dashboard />
                                           </ProtectedRoute>} />
+        <Route path="/register" element={ <Register />} />
         <Route path='/login' element={<Login />}/>
         <Route path='/adminLogin' element={<AdminLogin />} />
       </Routes>

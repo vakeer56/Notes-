@@ -7,6 +7,7 @@ import Register from './pages/registration'
 import UploadNotes from "./pages/UploadNotes";
 import ProtectedRoute from './Routes/ProtectedRoute'
 
+
 function App() {
   return (
     <BrowserRouter>

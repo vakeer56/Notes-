@@ -1,10 +1,6 @@
 mongoose = require("mongoose");
 
 const notesSchema = new mongoose.Schema({
-    note_id: {
-            type: Number,
-            required: true
-        },
     student_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Student",

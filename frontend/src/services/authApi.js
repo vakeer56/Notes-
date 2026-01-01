@@ -13,3 +13,16 @@ export const loginAdmin = (credentials) => {
     credentials
   );
 };
+
+export const uploadNotes = (token, formData) => {
+  return axios.post(
+    "http://localhost:5000/notes/upload",
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    }
+  );
+};

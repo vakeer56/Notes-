@@ -46,8 +46,9 @@ const show = async (req, res) => {
 // POST Notes
 const store = async (req, res) => {
   try {
-    const newNote = new Notes(req.body); // Mongoose creates a new document (an object) based on your notesSchema.
-    const savedNote = await newNote.save(); //saves the note in the database
+    const {title, description, department, year, file_url} = req.body
+    const newNote = new Notes({title, description, department, year: Number(year), file_url, student_id: req.user.id});
+    const savedNote = await newNote.save();
 
     res.status(201).json({
       success: true,

@@ -2,11 +2,11 @@ POST http://localhost:5000/student/register
 Content-Type: application/json
 
 {
-  "name": "JD",
-  "email": "johndoe@example.com",
+  "name": "Varun",
+  "email": "varun@example.com",
   "password": "securepassword",
-  "department": "ECE",
-  "year": 2
+  "department": "IT",
+  "year": 1
 }
 
 ###

@@ -1,37 +1,31 @@
-const path = require('path')
-const multer = require('multer')
+const jwt = require("jsonwebtoken")
 
-var storage = multer.diskStorage({
-    //location where file will be saved
-    destination: function(req, file, cb){
-        cb(null, 'uploads/')  
-    },
-    //renames files with current timestamp and extensions
-    filename: function(req, file, cb){
-        let ext = path.extname(file.originalname)
-        cb(null, Date.now() + ext) // Example: 1730392563400.jpg
+const authMiddleware = (req, res, next) =>{
+    try{
+        const authHeader = req.headers.authorization;
+
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({
+        success: false,
+        message: "No token provided"
+      });
     }
-})
 
-var upload = multer({
-    storage: storage,
-    //restricts what file types can be uploaded
-    fileFilter: function(req, file, callback){
-        if(
-            file.mimetype == "application/pdf"||
-            file.mimetype == "image/png"||
-            file.mimetype == "image/jpeg"
-        ){
-            callback(null, true)
-        } else{
-            console.log("Only pdf, png, jpg supported!")
-            callback(null, false)
-        }
-    }, 
-    // Set maximum file size limit (here: 64 MB)
-    limits: {
-        fileSize: 1024 * 1024 * 64
-    }
-})
+    const token  = authHeader.split(" ")[1];
 
-module.exports = upload
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    req.user = {
+        id: decoded.studentId
+    };
+    next();
+
+    } catch(error){
+        return res.status(404).json({
+            success:false,
+            message: "Invalid or expired token"
+        });
+    };
+};
+
+module.exports = authMiddleware;

@@ -10,6 +10,11 @@ node_modules
 dist
 dist-ssr
 *.local
+/node_modules
+./node_modules
+node_modules/
+/frontend/node_modules
+/home/varunmahendran/Documents/GitHub/Notes-/frontend/node_modules
 
 # Editor directories and files
 .vscode/*

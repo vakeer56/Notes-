@@ -7,7 +7,7 @@ import Register from './pages/registration'
 import UploadNotes from "./pages/UploadNotes";
 import ProtectedRoute from './Routes/ProtectedRoute'
 import AdminPage from './pages/adminDashboard'
-import ApproveNotes from "./pages/ApproveNotes";
+import ApproveNotes from "./pages/ApproveNotes.jsx";
 
 
 
@@ -27,8 +27,9 @@ function App() {
                                           <UploadNotes />
                                        </ProtectedRoute>} /> 
         <Route path='/adminLogin' element={<AdminLogin />} />
-        <Route path='/admindash' element={<AdminPage />} />
-        <Route path="/approve-notes" element={<ApproveNotes />} />
+        <Route path="/approve-notes" element={<ProtectedRoute>
+                                                  <ApproveNotes />
+                                              </ProtectedRoute>} />
       
         <Route path='/admindash' element={<ProtectedRoute>
                                             <AdminPage /> 

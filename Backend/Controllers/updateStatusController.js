@@ -3,7 +3,8 @@ const Notes = require("../model/notes")
 // UPDATE Notes - Approve or Reject by Admin
 const updateStatus = async (req, res) => {
   try {
-    const { note_id, status } = req.body;
+    const {status } = req.body;
+    const {id} =  req.params;
 
     // Only allow specific statuses
     if (!["approved", "rejected"].includes(status)) {
@@ -14,8 +15,8 @@ const updateStatus = async (req, res) => {
     }
 
     // Find the note and update its status
-    const updatedNote = await Notes.findOneAndUpdate(
-      {note_id: Number(note_id) },
+    const updatedNote = await Notes.findByIdAndUpdate(
+      id,
       { status: status },
       { new: true } // returns the updated document
     );

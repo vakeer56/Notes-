@@ -19,7 +19,7 @@ function ApproveNotes() {
     };
 
     const removeNoteFromUI = (note_id) => {
-        setNotes(notes.filter(note => note.note_id !== note_id));
+        setNotes(notes.filter(note => note._id !== note_id));
     };
 
     useEffect(() => {
@@ -28,7 +28,7 @@ function ApproveNotes() {
 
     return (
         <>
-            <h1>Approve / Reject Notes</h1>
+            <h1>Admin Dashboard</h1>
 
             {loading ? (
                 <p>Loading pending notes...</p>
@@ -38,7 +38,7 @@ function ApproveNotes() {
                 <div className="notes-container">
                     {notes.map(note => (
                         <AdminNoteCard
-                            key={note.note_id}
+                            key={note._id}
                             note={note}
                             onAction={removeNoteFromUI}
                         />

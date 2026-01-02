@@ -20,7 +20,7 @@ const handleSubmit = async (e) => {
         const response = await loginUser({email, password})
 
         localStorage.setItem("token", response.data.token)
-        navigate('/dashboard')
+        navigate('/approve-notes')
     }catch (error) {
         if (error.response?.data?.error) {
             setErrMsg(error.response.data.error)

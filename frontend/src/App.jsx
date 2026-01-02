@@ -7,6 +7,11 @@ import Register from './pages/registration'
 import UploadNotes from "./pages/UploadNotes";
 import ProtectedRoute from './Routes/ProtectedRoute'
 import AdminPage from './pages/adminDashboard'
+import ApproveNotes from "./pages/ApproveNotes";
+
+
+
+
  
 function App() {
   return (
@@ -22,6 +27,9 @@ function App() {
                                           <UploadNotes />
                                        </ProtectedRoute>} /> 
         <Route path='/adminLogin' element={<AdminLogin />} />
+        <Route path='/admindash' element={<AdminPage />} />
+        <Route path="/approve-notes" element={<ApproveNotes />} />
+      
         <Route path='/admindash' element={<ProtectedRoute>
                                             <AdminPage /> 
                                           </ProtectedRoute>} />

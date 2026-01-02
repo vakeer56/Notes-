@@ -12,21 +12,27 @@ import ApproveNotes from "./pages/ApproveNotes";
 
 
 
+ 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Navigate to= "/login" />}/>
+        <Route path='/login' element={<Login />}/>
         <Route path="/dashboard" element={<ProtectedRoute>
                                              <Dashboard />
                                           </ProtectedRoute>} />
         <Route path="/register" element={ <Register />} />
-        <Route path="/upload" element={<UploadNotes />} /> 
-        <Route path='/login' element={<Login />}/>
+        <Route path="/upload" element={<ProtectedRoute>
+                                          <UploadNotes />
+                                       </ProtectedRoute>} /> 
         <Route path='/adminLogin' element={<AdminLogin />} />
         <Route path='/admindash' element={<AdminPage />} />
         <Route path="/approve-notes" element={<ApproveNotes />} />
       
+        <Route path='/admindash' element={<ProtectedRoute>
+                                            <AdminPage /> 
+                                          </ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   )

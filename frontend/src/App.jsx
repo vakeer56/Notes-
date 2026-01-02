@@ -8,7 +8,6 @@ import UploadNotes from "./pages/UploadNotes";
 import ProtectedRoute from './Routes/ProtectedRoute'
 import AdminPage from './pages/adminDashboard'
 import ApproveNotes from "./pages/ApproveNotes";
-import ApproveNotes from "./pages/ApproveNotes";
 
 
 

@@ -5,7 +5,7 @@ function AdminNoteCard({ note, onAction }) {
     const updateStatus = async (status) => {
         try {
             await axios.post(
-                `http://localhost:5000/notes/update-status/${note._id}`,
+                `http://localhost:5000/notes/updateStatus/${note._id}`,
                 { status: status }
             );
             onAction(note._id);

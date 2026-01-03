@@ -7,20 +7,20 @@ function AdminPage() {
   const [rejectedNotes, setRejectedNotes] = useState([]);
   const [error, setError] = useState("");
 
-  const fetchNotes = async (url, setter, errorMsg) => {
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-
-      if (data.success) {
-        setter(data.notes);
-      }
-    } catch {
-      setError(errorMsg);
-    }
-  };
-
   useEffect(() => {
+    const fetchNotes = async (url, setter, errorMsg) => {
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data.success) {
+          setter(data.notes);
+        }
+      } catch {
+        setError(errorMsg);
+      }
+    };
+
     fetchNotes(
       "http://localhost:5000/notes/pending",
       setPendingNotes,

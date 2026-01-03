@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Student = require("../model/student");
+const Admin = require("../model/admin");
 
 require("dotenv").config();
 
@@ -36,20 +37,33 @@ router.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        const student = await Student.findOne({ email });
-        if (!student) return res.status(400).json({ error: "Invalid email or password" });
 
-        const isMatch = await bcrypt.compare(password, student.password);
+        let user = await Student.findOne({ email });
+        let role = "student";
+        let model = "Student";
+
+        if(!user) {
+             user = await Admin.findOne({email});
+             role = "admin";
+             model = "Admin";
+            }
+        if (!user) return res.status(400).json({ error: "Invalid email or password" });
+
+
+
+
+        const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ error: "Invalid email or password" });
 
         const token = jwt.sign(
-            { studentId: student._id, email: student.email },
+            { studentId: user._id, email: user.email, role},
             process.env.JWT_SECRET,
             { expiresIn: "1h" }
         );
         res.status(200).json({ 
             message: "Login successful",
-            token
+            token,
+            user: {role}
         });
     } catch (err) {
         res.status(500).json({err});

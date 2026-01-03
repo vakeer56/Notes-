@@ -9,6 +9,7 @@ function NotesList({ notes }) {
     return (
         <div className="notes-grid">
             {notes
+                .filter(note => note.status === "approved")
                 .map(note => (
                     <NoteCard key={note._id} note={note} />
                 ))}

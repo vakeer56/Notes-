@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import NotesList from "../components/NoteList";
 import SearchBox from "../components/searchBox";
-import { Routes, Route, Navigate, Link } from "react-router-dom";
+import Logout from "../components/Logout";
+import {Link } from "react-router-dom";
 
 
 function Dashboard() {
 
     const [notes, setNotes] = useState([]);
     const [loading, setLoading] = useState(true);
+    const role = localStorage.getItem("role")
 
     const getallNotes = async () =>{
         try{
@@ -32,7 +34,17 @@ function Dashboard() {
             
             <div className="hero">
                     <SearchBox setNotes={setNotes} />
-                    <Link to="/upload"><button>Upload Notes</button></Link>
+                <div className="logging">
+                    <div className="login">
+                           {role === "student" && <Link to="/upload"><button>Upload Notes</button></Link>}
+                           {role === "admin" && <Link to="/approve-notes"><button>Approve Notes</button></Link>}
+                    </div>
+                    <div className="logout">
+                        <Logout></Logout>
+                    </div>
+                  
+                </div>
+                   
                 <div className="display">
                     {loading ? (<p>
                         Loading Notes...

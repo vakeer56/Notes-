@@ -74,7 +74,7 @@ const store = async (req, res) => {
 const byDepartment = async (req, res) => {
   try {
     const department = req.params.department;
-    const notes = await Notes.find({ department, approved: true });
+    const notes = await Notes.find({ department, status: "approved" });
 
     res.status(200).json({
       success: true,
@@ -94,7 +94,7 @@ const byDepartment = async (req, res) => {
 const bySubject = async (req, res) => {
   try {
     const title = req.params.title;
-    const notes = await Notes.find({ title, approved: true });
+    const notes = await Notes.find({ title, status: "approved" });
 
     res.status(200).json({
       success: true,
@@ -113,8 +113,8 @@ const bySubject = async (req, res) => {
 // GET by year
 const byYear = async (req, res) => {
   try {
-    const year = req.params.year;
-    const notes = await Notes.find({ year, approved: true });
+    const year = Number(req.params.year);
+    const notes = await Notes.find({ year, status: "approved" });
 
     res.status(200).json({
       success: true,

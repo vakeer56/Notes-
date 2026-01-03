@@ -1,6 +1,10 @@
 import { useState } from "react"
 import { registerStudent } from "../services/authApi";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 
 function Register() {
@@ -40,50 +44,101 @@ function Register() {
     }
 
         }
-    return(<>
+    return(
+     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl font-bold">Student Registration</CardTitle>
+          <CardDescription>Create your account to get started</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleRegister} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your name"
+                required
+              />
+            </div>
 
-    <h1>Student Register</h1>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+              />
+            </div>
 
-    <form onSubmit={handleRegister}>
+            <div className="space-y-2">
+              <Label htmlFor="department">Department</Label>
+              <Input
+                id="department"
+                type="text"
+                value={department}
+                onChange={(e) => setDepartment(e.target.value)}
+                placeholder="e.g., Computer Science"
+                required
+              />
+            </div>
 
-        <label>Name: </label>
-        <input type="text"
-               onChange={(e) => setName(e.target.value)}
-               required />
+            <div className="space-y-2">
+              <Label htmlFor="year">Year</Label>
+              <Input
+                id="year"
+                type="number"
+                min={1}
+                max={4}
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+                placeholder="1-4"
+                required
+              />
+            </div>
 
-        <label>Email: </label>
-        <input type="email"
-               onChange={(e) => setEmail(e.target.value)}
-               required />
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Create a password"
+                required
+              />
+            </div>
 
-        <label>Department: </label>
-        <input type="text"
-               onChange={(e) => setDepartment(e.target.value)}
-               required />
+            {succMsg && (
+              <p className="text-sm text-green-600 font-medium">{succMsg}</p>
+            )}
+            {errMsg && (
+              <p className="text-sm text-red-600 font-medium">{errMsg}</p>
+            )}
 
-        <label>Year: </label>
-        <input type="number"
-               min={1} max={4}
-               onChange={(e) => setYear(e.target.value)}
-               required />
+            <Button type="submit" className="w-full">
+              Register
+            </Button>
 
-        <label>Enter Password: </label>
-        <input type="text"
-               onChange={(e) => setPassword(e.target.value)}
-               required />
-
-        <button type="submit">Register</button>
-        
-        <div className="msg">
-            {succMsg && <p>{succMsg}</p>}
-            {errMsg && <p>{errMsg}</p>}
-        </div>
-
-        <Link to='/login'><button>Student Login</button></Link>
-        
-    </form>
-    </>)
-
+            <div className="text-center">
+              <p className="text-sm text-gray-600">
+                Already have an account?{' '}
+                <Link to="/login" className="text-blue-600 hover:underline font-medium">
+                  Login here
+                </Link>
+              </p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+    )
 }
 
 export default Register

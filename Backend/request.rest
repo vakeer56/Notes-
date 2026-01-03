@@ -99,8 +99,8 @@ Content-Type: application/json
 
 {
   "name": "Varun",
-  "email": "varunAdmin@example.com",
-  "password": "securepassword",
+  "email": "VarunAdmin@example.com",
+  "password": "password",
   "department": "IT",
   "year": 1
 }
@@ -111,6 +111,6 @@ POST http://localhost:5000/admin/login
 Content-Type: application/json
 
 {
-  "email": "varunAdmin@example.com",
-  "password": "securepassword"
+  "email": "VarunAdmin@example.com",
+  "password": "password"
 }

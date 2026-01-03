@@ -7,6 +7,11 @@ import Register from './pages/registration'
 import UploadNotes from "./pages/UploadNotes";
 import ProtectedRoute from './Routes/ProtectedRoute'
 import AdminPage from './pages/adminDashboard'
+import ApproveNotes from "./pages/ApproveNotes.jsx";
+
+
+
+
  
 function App() {
   return (
@@ -22,9 +27,10 @@ function App() {
                                           <UploadNotes />
                                        </ProtectedRoute>} /> 
         <Route path='/adminLogin' element={<AdminLogin />} />
-        <Route path='/admindash' element={<ProtectedRoute>
-                                            <AdminPage /> 
-                                          </ProtectedRoute>} />
+        <Route path="/approve-notes" element={<ProtectedRoute>
+                                                  <ApproveNotes />
+                                              </ProtectedRoute>} />
+      
       </Routes>
     </BrowserRouter>
   )

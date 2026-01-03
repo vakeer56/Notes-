@@ -28,7 +28,7 @@ function SearchBox({ setNotes }) {
 
 
       setNotes(data.notes || data);
-    } catch (err) {
+    } catch () {
       setError("Failed to fetch notes");
     }
   };

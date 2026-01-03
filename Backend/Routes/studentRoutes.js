@@ -1,0 +1,73 @@
+const express = require("express");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const Student = require("../model/student");
+const Admin = require("../model/admin");
+
+require("dotenv").config();
+
+const router = express.Router();
+
+// Register
+router.post("/register", async (req, res) => {
+    try {
+        const { name, email, password, department, year } = req.body;
+
+        const existing = await Student.findOne({ email });
+        if (existing) return res.status(400).json({ error: "Email already registered" });
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newStudent = new Student({
+            name,
+            email,
+            password: hashedPassword,
+            department,
+            year
+        });
+
+        await newStudent.save();
+        res.status(201).json({ message: "Student registered successfully" });
+    } catch (err) {
+        res.status(500).json({err});
+    }
+});
+
+// Login
+router.post("/login", async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+
+        let user = await Student.findOne({ email });
+        let role = "student";
+        let model = "Student";
+
+        if(!user) {
+             user = await Admin.findOne({email});
+             role = "admin";
+             model = "Admin";
+            }
+        if (!user) return res.status(400).json({ error: "Invalid email or password" });
+
+
+
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(400).json({ error: "Invalid email or password" });
+
+        const token = jwt.sign(
+            { studentId: user._id, email: user.email, role},
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+        );
+        res.status(200).json({ 
+            message: "Login successful",
+            token,
+            user: {role}
+        });
+    } catch (err) {
+        res.status(500).json({err});
+    }
+});
+
+module.exports = router;

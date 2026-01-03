@@ -1,5 +1,7 @@
 import { useState } from "react";
 import './searchBox.css'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 function SearchBox({ setNotes }) {
   const [searchText, setSearchText] = useState("");
@@ -34,17 +36,17 @@ function SearchBox({ setNotes }) {
   };
 
   return (
-    <div className="search">
-      <input
+    <div className="flex gap-2 w-full">
+      <Input
         type="text"
         placeholder="Search by year, department, subject"
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
+        className="flex-1"
       />
-      <button onClick={handleSearch}>Search</button>
-
-      {error && <p className="error">{error}</p>}
-    </div>
+      <Button onClick={handleSearch}>Search</Button>
+      {error && <p className="text-sm text-red-600 mt-2">{error}</p>}
+  </div>
   );
 }
 

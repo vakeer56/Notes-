@@ -35,7 +35,9 @@ function AdminNoteCard({ note, onAction }) {
                 </button>
 
                 <button
-                    onClick={() => updateStatus("rejected")}
+                    onClick={() =>{
+                         if (!window.confirm("Are you sure you want to remove the note")) return;
+                         updateStatus("rejected")}}
                     style={{ background: "#FF4433", color: "white" }}
                 >
                     Reject

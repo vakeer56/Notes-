@@ -20,10 +20,14 @@ const handleSubmit = async (e) => {
         const response = await loginUser({email, password})
 
         localStorage.setItem("token", response.data.token)
-        navigate('/approve-notes')
+        localStorage.setItem("role", response.data.user.role)
+        navigate('/dashboard')
     }catch (error) {
         if (error.response?.data?.error) {
             setErrMsg(error.response.data.error)
+            console.log("error: ", error);
+            console.log("response: ", error.response);
+
         }
         else {
             setErrMsg("Something went wrong")
@@ -33,7 +37,7 @@ const handleSubmit = async (e) => {
 
 return (
     <>
-    <h1>Student Login</h1>
+    <h1>Welcome to Our Classroom App</h1>
     <form onSubmit={handleSubmit}>
         <label>Email: </label>
         <input 
@@ -47,11 +51,10 @@ return (
 
         <button type="submit">Login</button>
         {errMsg && <p  className="error-message">{errMsg}</p>}
+
+        <Link to="/register"><button>Register</button></Link>
     </form>
 
-    <div className="change">
-        <Link to="/adminLogin"><button>Admin Login</button></Link>
-    </div>
     </>
 
 );

@@ -31,9 +31,6 @@ function App() {
                                                   <ApproveNotes />
                                               </ProtectedRoute>} />
       
-        <Route path='/admindash' element={<ProtectedRoute>
-                                            <AdminPage /> 
-                                          </ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   )

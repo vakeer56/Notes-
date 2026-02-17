@@ -43,9 +43,9 @@ router.post("/login", async (req, res) => {
         let model = "Student";
 
         if(!user) {
-             user = await Admin.findOne({email});
-             role = "admin";
-             model = "Admin";
+                user = await Admin.findOne({email});
+                role = "admin";
+                model = "Admin";
             }
         if (!user) return res.status(400).json({ error: "Invalid email or password" });
 

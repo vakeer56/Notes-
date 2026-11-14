@@ -1,4 +1,4 @@
-# 📚 NotesHub -A collaborative notes-sharing app
+# NotesHub -A collaborative notes-sharing app
 
 •Enables students to upload, browse, and download shared notes through a unified platform.
 •Implements an admin verification workflow to approve,reject, or manage uploaded content.

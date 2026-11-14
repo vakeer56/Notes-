@@ -1,10 +1,10 @@
 # NotesHub -A collaborative notes-sharing app
 
-•Enables students to upload, browse, and download shared notes through a unified platform.
-•Implements an admin verification workflow to approve,reject, or manage uploaded content.
-•Provides secure role-based authentication (Student/Admin) using JWT.
-•Ensures protected API routes and controlled content visibility
-•Tech stack - MongoDB, Express.js, React.js, Node.js, Tailwind CSS
+- Enables students to upload, browse, and download shared notes through a unified platform.
+- Implements an admin verification workflow to approve,reject, or manage uploaded content.
+- Provides secure role-based authentication (Student/Admin) using JWT.
+- Ensures protected API routes and controlled content visibility
+- Tech stack - MongoDB, Express.js, React.js, Node.js, Tailwind CSS
 
 <img width="1894" height="911" alt="Screenshot_20260502_161506" src="https://github.com/user-attachments/assets/c643cf85-6fc7-4ad4-85d7-c99276b5dc21" />
 ---
